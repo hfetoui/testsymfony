@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EquipementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo; // gedmo annotations
 
 /**
  * @ORM\Entity(repositoryClass=EquipementRepository::class)
@@ -33,11 +34,13 @@ class Equipement
     private $number;
 
     /**
+     * @Gedmo\Timestampable(on="create"
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
 
     /**
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
