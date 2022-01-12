@@ -50,7 +50,7 @@ class EquipementController extends AbstractController
     		}
     	}
     	return $this->render('equipement/new_edit.html.twig',
-    		array('form' => $form->createView())
+    		array('form' => $form->createView(),"title"=>"Ajout d'un Equippement")
     	);
     }
 
@@ -112,7 +112,7 @@ class EquipementController extends AbstractController
     		}
     	}
     	return $this->render('equipement/new_edit.html.twig',
-    		array('form' => $form->createView())
+    		array('form' => $form->createView(),"title"=>"Modifier un Equippement")
     	);
     }
 

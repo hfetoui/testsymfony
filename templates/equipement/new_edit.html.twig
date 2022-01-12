@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}add new Equipement{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 
 {% block body %}
@@ -14,7 +14,7 @@
   <div class="row h-100 justify-content-center align-items-center">
 
     {{ form_start(form) }}
-    <legend>Ajout d'un Equippement</legend>
+    <legend>{{ title }}</legend>
 
     <div class="my-custom-class-for-errors">
       {{ form_errors(form) }}
