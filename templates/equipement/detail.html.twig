@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}add new Equipement{% endblock %}
+
+
+{% block body %}
+
+<style type="text/css">
+.form-group {
+ margin-bottom: 10px;
+}
+</style>
+<div class="container h-100">
+  <div class="card row h-100 justify-content-center align-items-center">
+    <div class="details col-md-10">
+      <h3 class="product-title">Detaille de l'equipement  "{{ equipement.name }}"</span> </h3>
+
+      <p > {{ equipement.description }}</p>
+      <p><strong>Category: </strong>{{ equipement.category }}</h4>
+      <p><strong>Reference :</strong> {{ equipement.number }} </p>
+
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}

@@ -73,6 +73,23 @@ class EquipementController extends AbstractController
     }
 
     /**
+     * @Route("/view-{id}", name="_detail")
+     */
+    public function detail(Request $request,ManagerRegistry $doctrine,int $id): Response
+    {
+
+		$equipement = $doctrine->getRepository(Equipement::class)->find($id);
+		if (!$equipement) {
+            throw $this->createNotFoundException('No equipement found for id '.$id);
+        }
+
+    	return $this->render('equipement/detail.html.twig',
+    		array('equipement' => $equipement)
+    	);
+    }
+
+
+    /**
      * @Route("/{id}", name="_edit")
      */
     public function edit(Request $request,ManagerRegistry $doctrine,int $id): Response
