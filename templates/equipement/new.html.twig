@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}add new Equipement{% endblock %}
+
+
+{% block body %}
+
+<style type="text/css">
+.form-group {
+ margin-bottom: 10px;
+}
+</style>
+<div class="container h-100">
+  <div class="row h-100 justify-content-center align-items-center">
+
+    {{ form_start(form) }}
+    <legend>Ajout d'un Equippement</legend>
+
+    <div class="my-custom-class-for-errors">
+      {{ form_errors(form) }}
+    </div>
+
+    <fieldset>
+      <div class="form-group">          
+        {{ form_row(form.name) }}
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        {{ form_row(form.category) }}
+
+      </div>
+
+      <div class="form-group">
+        {{ form_row(form.number) }}
+
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+      </div>
+    </fieldset>
+
+
+
+    {{ form_end(form) }}
+    
+  </div>
+</div>
+
+{% endblock %}
