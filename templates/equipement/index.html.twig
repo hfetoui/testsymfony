@@ -42,9 +42,9 @@ h4 {
             <td>{{ equipement.number }}</td>
             <td>{{ equipement.updatedAt|date("d M Y", "Europe/Paris") }}</td>
             <td>
-              <button type="button" class="btn btn-primary"><i class="far fa-eye"></i></button>
-              <button type="button" class="btn btn-success"><i class="fas fa-edit"></i></button>
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+              <a href="/equipements/view-{{ equipement.id }}" class="btn btn-primary"><i class="far fa-eye"></i></a>
+              <a href="/equipements/{{ equipement.id }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+              <a href="/equipements/delete-{{ equipement.id }}" class="btn btn-danger"> <i class="far fa-trash-alt"></i></a>
             </td>
           </tr>
           {% endfor %}

@@ -22,10 +22,10 @@ class EquipementController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
     	$equipements = $doctrine->getRepository(Equipement::class)->findAll();
- 
-        return $this->render('equipement/index.html.twig', [
-            'equipements' => $equipements,
-        ]);
+
+    	return $this->render('equipement/index.html.twig', [
+    		'equipements' => $equipements,
+    	]);
     }
 
     /**
@@ -36,28 +36,70 @@ class EquipementController extends AbstractController
     	$equipement = new Equipement();
 
     	$form = $this->createForm(EquipementType::class, $equipement);
-		$form->handleRequest($request);
+    	$form->handleRequest($request);
 
-    if ($request->isMethod('POST')) {
+    	if ($request->isMethod('POST')) {
 
-        if ($form->isSubmitted() && $form->isValid()) {
+    		if ($form->isSubmitted() && $form->isValid()) {
 
-        	$entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($equipement);
-            $entityManager->flush();
+    			$entityManager = $this->getDoctrine()->getManager();
+    			$entityManager->persist($equipement);
+    			$entityManager->flush();
 
-        	 return $this->redirectToRoute('equipements_liste');
-        }
-  }
-                // if ($form->isSubmitted() ) die("form  submited");
-
-
-        
-
-            // if ($form->isValid()) die("form isValid");
-
-        return $this->render('equipement/new.html.twig',
-            array('form' => $form->createView())
-        );
+    			return $this->redirectToRoute('equipements_liste');
+    		}
+    	}
+    	return $this->render('equipement/new_edit.html.twig',
+    		array('form' => $form->createView())
+    	);
     }
+
+    /**
+     * @Route("/delete-{id}", name="_delete")
+     */
+    public function delete(Request $request,ManagerRegistry $doctrine,int $id): Response
+    {
+
+		$equipement = $doctrine->getRepository(Equipement::class)->find($id);
+		if (!$equipement) {
+            throw $this->createNotFoundException('No equipement found for id '.$id);
+        }
+        $entityManager = $doctrine->getManager();
+    	$entityManager->remove($equipement);
+        $entityManager->flush();
+
+    	return $this->redirectToRoute('equipements_liste');
+
+    }
+
+    /**
+     * @Route("/{id}", name="_edit")
+     */
+    public function edit(Request $request,ManagerRegistry $doctrine,int $id): Response
+    {
+
+		$equipement = $doctrine->getRepository(Equipement::class)->find($id);
+
+    	$form = $this->createForm(EquipementType::class, $equipement);
+    	$form->handleRequest($request);
+
+    	if ($request->isMethod('POST')) {
+
+    		if ($form->isSubmitted() && $form->isValid()) {
+
+    			$entityManager = $doctrine->getManager();
+    			$entityManager->persist($equipement);
+    			$entityManager->flush();
+
+    			return $this->redirectToRoute('equipements_liste');
+    		}
+    	}
+    	return $this->render('equipement/new_edit.html.twig',
+    		array('form' => $form->createView())
+    	);
+    }
+
+
+
+
 }
