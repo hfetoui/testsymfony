@@ -27,7 +27,7 @@ class EquipementType extends AbstractType
             ->add('number', TextType::class,['label' => 'Reference','attr' => ['class' => 'form-control input-md']])
             ->add('description', TextareaType::class,['label' => 'Description','required'   => false,'empty_data' => '','attr' => ['class' => 'form-control input-md']])
             ->add('submit', SubmitType::class,  [
-              'label' => 'Submit',
+              'label' => 'Envoyer',
               'attr' => [
                   'class' => 'form-control btn btn btn-default',
                 ],
