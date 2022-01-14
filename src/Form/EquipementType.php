@@ -17,14 +17,12 @@ class EquipementType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
         $builder
             ->add('name' , TextType::class,['label' => 'Nom de l\'equipement','attr' => ['class' => 'form-control input-md']])
                 ->add('category', ChoiceType::class, [
-                'choices'  => [
-                    'Ordinateur' => 'Ordinateur',
-                    'Table' => 'Table',
-                    'Accessoire' => 'Accessoire',
-                ],'label' => 'Categorie','attr' => ['class' => 'form-control input-md']
+                'choices'  => $this->getCategories()
+                ,'label' => 'Categorie','attr' => ['class' => 'form-control input-md']
             ])
             ->add('number', TextType::class,['label' => 'Reference','attr' => ['class' => 'form-control input-md']])
             ->add('description', TextareaType::class,['label' => 'Description','required'   => false,'empty_data' => '','attr' => ['class' => 'form-control input-md']])
@@ -42,5 +40,14 @@ class EquipementType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Equipement::class,
         ]);
+    }
+
+    private function getCategories(){
+        $retours=[];
+        foreach (Equipement::$categories as $value) {
+           $retours[$value]=$value;
+
+        }
+        return $retours;
     }
 }
